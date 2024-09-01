@@ -10,7 +10,10 @@ import os
 
 app = Flask(__name__)
 
-graph = ox.load_graphml("nyc_walk.graphml")
+graph = ox.load_graphml("nyc_walk_with_sept_oct_safety.graphml")
+# with open('static/base_map.pkl', 'rb') as f:
+#     m = pickle.load(f)
+
 
 @app.route('/')
 def index():
@@ -18,7 +21,7 @@ def index():
 
 @app.route('/map', methods=['GET'])
 def map_view():
-    path_finding()
+    # path_finding()
     return render_template('map.html')  # Change this to map_view.html to avoid conflict
 
 @app.route('/route', methods=['POST'])
@@ -27,6 +30,7 @@ def route():
     start_lat, start_lon = data['start']
     end_lat, end_lon = data['end']
 
+    print("got here")
     # Find the nearest nodes to the start and end points
     start_node = ox.distance.nearest_nodes(graph, X=start_lon, Y=start_lat)
     end_node = ox.distance.nearest_nodes(graph, X=end_lon, Y=end_lat)
@@ -36,8 +40,10 @@ def route():
 
     # Extract the latitude and longitude for each node in the route
     route_coords = [(graph.nodes[node]['y'], graph.nodes[node]['x']) for node in route]
+    print("route coords")
+    print(route_coords)
+    return jsonify({'route_coords': route_coords})
 
-    return jsonify(route_coords)
 
 def path_finding():
     # Get the start and end coordinates from the query parameters
@@ -53,10 +59,12 @@ def path_finding():
     except:
         start_coords = (40.7128, -74.0060)  # Default to example coordinates in NYC
         end_coords = (40.730610, -73.935242)
+        return 
 
     # Create a map centered around the start point
     m = folium.Map(location=start_coords, zoom_start=12)
 
+    
     # Add markers for start and end points
     folium.Marker(start_coords, popup="Start", icon=folium.Icon(color='green')).add_to(m)
     folium.Marker(end_coords, popup="End", icon=folium.Icon(color='red')).add_to(m)

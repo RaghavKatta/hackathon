@@ -6,7 +6,7 @@ import pytz
 import requests
 
 # Load the CSV file with error handling and data type specification
-crime_data = pd.read_csv("NYC_crime.csv", dtype=str, low_memory=False, nrows = 1000)
+crime_data = pd.read_csv("NYC_crime.csv", dtype=str, low_memory=False)
 
 # Clean the date column by filtering out invalid dates
 def clean_date(date_str):
@@ -67,5 +67,9 @@ crime_data['Light_Level'] = crime_data.apply(
 # Drop rows where Light_Level couldn't be calculated
 crime_data = crime_data.dropna(subset=['Light_Level'])
 
-# Print the first few rows to verify the results
-print(crime_data)
+# # Print the first few rows to verify the results
+# print(crime_data)
+
+# Save the results to a CSV file
+crime_data.to_csv('NYC_crime_s.csv', index=False)
+
