@@ -12,7 +12,7 @@ We have created an application to help you conveniently determine a safe walking
 3. Using these safety scores, and the previous graph data with lengths between nodes, we multiplied the two to create a safe walking variable for each of the edges. This was used to balance the need to find short paths, with the need to avoid dangerous neighborhoods.
 4. We implemented an A* algorithm for path finding between the start and ending points with our custom weight.
 5. Next, we scraped data to determine the locations of over 100,000 unique streetlights within NYC from more public record data, available here, https://data.cityofnewyork.us/Social-Services/Street-Light-Road-map-/2bxc-5zsq. This was plotted on the graph along with a circle with set radius, to visually represent the well lit areas along the path of the user. 
-6. [Anurag enter info about the location autocomplete stuff here] 
+6. We then used an prebuilt system to translate text of location names into the latitude and longtitude for our path finding 
 7. To compliment this service we implemented a NLP audio detection AI to recognize your voice along the walk. We set up a safe word registration, that allows the user to pick a safe word, that when said, can trigger an emergency response, such as making emergency alerts or calls.
 
 ### Challenges ###
@@ -26,7 +26,7 @@ We have created an application to help you conveniently determine a safe walking
 3. We can integrate a feature that provides unique cationary warnings based on the risks present in the locations traversed by each path, based on an AI LLM taking in the crime data in those areas, as well as general suggestions, to give a specific response to users.
 4. Taking in the user's unique demographics, can be used to weight crimes and risk factors along a path to adjust them based on the different prevelances of crimes against different ages, genders, or races.
 
-### Key Technologies and Datasets used 
+### Key Technologies and Datasets used ###
 1. https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Map-Year-to-Date-/2fra-mtpn
 2. https://data.cityofnewyork.us/Social-Services/Street-Light-Road-map-/2bxc-5zsq
 3. Flask
@@ -34,8 +34,20 @@ We have created an application to help you conveniently determine a safe walking
 6. Folium
 7. Astral.Sun
 8. A* path finding algorithm
-9. NLP audio recognition [ayushe insert what you used]
-10. Text to Location recognition [anurug insert what u used here]
+9. NLP audio recognition 
+10. Text to Location recognition 
+
+### Accomplishments we are proud of ###
+1. Getting independent safety data for each block within NYC 
+2. Obtaining and displaying the locations of over 100,000 Streetlights 
+3. Allowing text recognition for locations and path finding
+4. Having useable safe word alerts and calls linked
+
+### What We Learned ###
+1. Collaborating in a team env
+2. working with creating maps within a flask web app
+3. working on integrating AI based features within a flask app
+4. Integrating the flask app with different private APIs
 
 
 
